@@ -13,6 +13,7 @@
     (let [k (cache-key request)]
       (if (cache/has? @cache-instance k)
         (do
+          (println "Cache hit:" k)
           (swap! cache-instance cache/hit k)
           (update (cache/lookup @cache-instance k)
                   :headers
@@ -20,6 +21,7 @@
         (let [response (client request)]
           (when (and (http/success? response)
                      (#{:get} (:request-method request)))
+            (println "Cache miss:" k)
             (swap! cache-instance
                    cache/miss
                    k
