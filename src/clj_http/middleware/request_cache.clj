@@ -6,7 +6,7 @@
   (:import (org.apache.commons.io IOUtils)))
 
 (defn- cache-key [{:keys [server-name uri query-string]}]
-  (str server-name uri "?" (url-encode (or query-string ""))))
+  (str server-name uri (.hashCode (str "?" query-string))))
 
 (defn wrap-request-cache [client cache-instance]
   (fn [request]
