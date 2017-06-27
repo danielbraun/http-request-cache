@@ -2,10 +2,14 @@
 
 clj-http middleware to cache successful GET requests.
 
+## Installation
+
+Add the following dependency to your project file:
+
+[![Clojars Project](https://img.shields.io/clojars/v/http-request-cache.svg)](https://clojars.org/http-request-cache)
+
 ## Usage
-
 ```
-
 (require '[clj-http.middleware.request-cache :refer [wrap-request-cache]]                                                                                     
          '[clj-http.client :as http]                                                                                                                          
          '[clojure.core.cache :as cache])
@@ -16,8 +20,6 @@ clj-http middleware to cache successful GET requests.
   (http/get "http://www.example.com") ; Cache miss, request is now cached
   (http/get "http://www.example.com") ; Cache hit, instant response.
   )
-
-
 ```
 
 ## License
